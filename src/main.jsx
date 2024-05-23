@@ -6,6 +6,7 @@ import SpotifyWebApi from 'spotify-web-api-node';
 import { redirectURL } from './config/config';
 import { ThemeProvider } from '@mui/system';
 import { themeOptions } from './theme/meterial-theme';
+import { BrowserRouter } from 'react-router-dom';
 
 // const SpotifyWebApi = require('spotify-web-api-node');
 
@@ -19,9 +20,11 @@ const spotifyApi = new SpotifyWebApi({
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <BrowserRouter>
     <ThemeProvider theme={themeOptions}>
     <App spotifyApi={spotifyApi}/>
     </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>,
 );
 
