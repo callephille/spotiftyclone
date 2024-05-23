@@ -1,8 +1,8 @@
 export const authEndpoint = "https://accounts.spotify.com/authorize"
-export const cilentId = porcess.env.REACT_APP_CLIENT_ID;
-export const liveURL = process.env.REACT_APP_LIVE_URL;
-export const devURL = 'http://localhost:5173/'
-export const redirectURL = process.env.NODE_ENV === "production" ? liveURL : devURL;
+export const clientId = import.meta.env.VITE_CLIENT_ID;
+export const liveURL = import.meta.env.VITE_LIVE_URL;
+export const devURL = 'http://localhost:5173/';
+export const redirectURL = import.meta.env.PROD  ? liveURL : devURL;
 
 export const scopes = [
     'playlist-read-collaborative',
@@ -26,4 +26,5 @@ export const scopes = [
     'user-read-recently-played'
     ];
 
-const accessUrl = `${authEndpoint}?client_id=${cilentId}&redirect_uri=${redirectURL}&scope=${scopes.join("%20")}&response_type=token&show_dialog=true`;
+export const accessUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectURL}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
+
