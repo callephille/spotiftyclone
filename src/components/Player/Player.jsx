@@ -1,8 +1,8 @@
 import {Box, Grid, Typography, Avatar} from '@mui/material'
 import { useEffect, useState } from 'react';
 import PlayerConstrols from '../PlayerControls/PlayerControls';
+import PlayerVolume from '../PlayerVolume/PlayerVolume';
 const Player = ({spotifyApi, token}) => {
-
     const [localPlayer, setLocalPlayer] = useState();
     const [is_paused, setIsPaused] = useState(false);
     const [current_track, setCurrentTrack] = useState();
@@ -37,8 +37,8 @@ const Player = ({spotifyApi, token}) => {
             player.addListener('not_ready', ({ device_id }) => {
                 console.log('Device ID has gone offline', device_id);
             });
-            player.addListener('player_state_changed', (state)=> {
-                
+
+            player.addListener('player_state_changed', (state) => {
                 if(!state || !state.track_window?.current_track){
                     return;
                 }
@@ -50,9 +50,9 @@ const Player = ({spotifyApi, token}) => {
                 setIsPaused(state.paused);
                 setCurrentTrack(state.track_window.current_track);
 
-                player.getCurrentState().then(state =>{
+                player.getCurrentState().then((state) => {
                     !state ? setActive(false) : setActive(true)
-                })
+                });
 
             });
     
@@ -104,7 +104,7 @@ const Player = ({spotifyApi, token}) => {
                 
             </Grid>
             <Grid xs={6} md={4} item sx={{display:'flex', alignItems:'center', justifyContent:'flex-end'}}>
-                
+                <PlayerVolume player={localPlayer}/>
             </Grid>
         </Grid>
     </Box>
