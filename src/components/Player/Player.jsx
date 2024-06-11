@@ -23,7 +23,7 @@ const Player = ({ spotifyApi }) => {
 
 		window.onSpotifyWebPlaybackSDKReady = () => {
 			const player = new window.Spotify.Player({
-				name: 'Techover Playback',
+				name: 'CarlphilipsApp',
 				getOAuthToken: (cb) => {
 					cb(token);
 				},
